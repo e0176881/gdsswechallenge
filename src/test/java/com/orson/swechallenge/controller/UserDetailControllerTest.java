@@ -115,6 +115,62 @@ public class UserDetailControllerTest {
     }
 
     @Test
+    public void getUserDetailWithEmptyString() throws Exception{
+
+        UserDetailResponse expectedUserDetailResponse = new UserDetailResponse();
+        expectedUserDetailResponse.setResults(userDetailDTOList);
+
+        when(userDetailService.getUserDetails("0.0", "4000.0", "0", "2147483647", "")).thenReturn(userDetailList);
+        ResponseEntity<UserDetailResponse> userDetailResponse = (ResponseEntity<UserDetailResponse>) userDetailController.getAllUserDetails("", "", "", "", "");
+        assertEquals(HttpStatus.OK, userDetailResponse.getStatusCode());
+        assertThat(userDetailResponse.getBody().getResults())
+                .isNotNull()
+                .extracting("name",
+                        "salary")
+                .containsExactly(tuple("john", 4000.0f),
+                        tuple("john 2", 3000.0f));
+
+    }
+
+    @Test
+    public void getUserDetailWithNullValues() throws Exception{
+
+        UserDetailResponse expectedUserDetailResponse = new UserDetailResponse();
+        expectedUserDetailResponse.setResults(userDetailDTOList);
+
+        when(userDetailService.getUserDetails("0.0", "4000.0", "0", "2147483647", "")).thenReturn(userDetailList);
+        ResponseEntity<UserDetailResponse> userDetailResponse = (ResponseEntity<UserDetailResponse>) userDetailController.getAllUserDetails(null, null, null, null, null);
+        assertEquals(HttpStatus.OK, userDetailResponse.getStatusCode());
+        assertThat(userDetailResponse.getBody().getResults())
+                .isNotNull()
+                .extracting("name",
+                        "salary")
+                .containsExactly(tuple("john", 4000.0f),
+                        tuple("john 2", 3000.0f));
+
+    }
+
+    @Test
+    public void getUserDetailWithNullString() throws Exception{
+
+        UserDetailResponse expectedUserDetailResponse = new UserDetailResponse();
+        expectedUserDetailResponse.setResults(userDetailDTOList);
+
+        when(userDetailService.getUserDetails("0.0", "4000.0", "0", "2147483647", "")).thenReturn(userDetailList);
+        ResponseEntity<UserDetailResponse> userDetailResponse = (ResponseEntity<UserDetailResponse>) userDetailController.getAllUserDetails("null", "null", "null", "null", "null");
+        assertEquals(HttpStatus.OK, userDetailResponse.getStatusCode());
+        assertThat(userDetailResponse.getBody().getResults())
+                .isNotNull()
+                .extracting("name",
+                        "salary")
+                .containsExactly(tuple("john", 4000.0f),
+                        tuple("john 2", 3000.0f));
+
+    }
+
+
+
+    @Test
     public void getUserDetailInValidSortName() throws Exception{
 
         UserDetailResponse expectedUserDetailResponse = new UserDetailResponse();

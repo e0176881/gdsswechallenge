@@ -9,5 +9,5 @@ import java.io.Serializable;
 @Setter
 public class UploadResponse implements Serializable {
 
-   private Integer success;
+    private Integer success;
 }

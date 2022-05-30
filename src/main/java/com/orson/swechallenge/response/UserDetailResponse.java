@@ -10,5 +10,5 @@ import java.util.List;
 @Setter
 public class UserDetailResponse implements Serializable {
 
-   private List<com.orson.swechallenge.dto.UserDetailDTO> results;
+    private List<com.orson.swechallenge.dto.UserDetailDTO> results;
 }

@@ -8,7 +8,7 @@ public class ConstraintsCheckTest {
 
     @Test
     public void testValidSort() {
-       boolean isValidSort = ConstraintsCheck.checkIfValidSort("name");
+        boolean isValidSort = ConstraintsCheck.checkIfValidSort("name");
         assertThat(isValidSort).isTrue();
 
         isValidSort = ConstraintsCheck.checkIfValidSort("NAME");
@@ -74,6 +74,16 @@ public class ConstraintsCheckTest {
 
         message = ConstraintsCheck.checkIfValidArgumentType("1000.0", "2000.0", "0", "1234567890123456789012345678901234567890123456789");
         assertThat(message).isEqualTo("Invalid Input Type");
+    }
+
+    @Test
+    public void testNullToDefault() {
+        String message = ConstraintsCheck.nullToDefault(null, "0.0");
+        assertThat(message).isEqualTo("0.0");
+
+        message = ConstraintsCheck.nullToDefault("20", "0.0");
+        assertThat(message).isEqualTo("20");
+
     }
 
 }

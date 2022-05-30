@@ -153,6 +153,57 @@ public class IntegrationTest {
                 .andExpect(jsonPath("$.results[1].salary", is(4000.0)));
     }
 
+    @Test
+    void shouldReturnUserDetailWithNullString() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.get("/users")
+                        .param("min", "null")
+                        .param("max", "null")
+                        .param("offset", "null")
+                        .param("limit", "null")
+                        .param("sort", "null")
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.results[0].name", is("John")))
+                .andExpect(jsonPath("$.results[0].salary", is(2000.0)))
+                .andExpect(jsonPath("$.results[1].name", is("John 2")))
+                .andExpect(jsonPath("$.results[1].salary", is(4000.0)));
+    }
+
+    @Test
+    void shouldReturnUserDetailWithNullValue() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.get("/users")
+                        .param("min", (String) null)
+                        .param("max", (String) null)
+                        .param("offset", (String) null)
+                        .param("limit", (String) null)
+                        .param("sort", (String) null)
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.results[0].name", is("John")))
+                .andExpect(jsonPath("$.results[0].salary", is(2000.0)))
+                .andExpect(jsonPath("$.results[1].name", is("John 2")))
+                .andExpect(jsonPath("$.results[1].salary", is(4000.0)));
+    }
+
+    @Test
+    void shouldReturnUserDetailWithEmptyString() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.get("/users")
+                        .param("min", "")
+                        .param("max", "")
+                        .param("offset", "")
+                        .param("limit", "")
+                        .param("sort", "")
+                )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.results[0].name", is("John")))
+                .andExpect(jsonPath("$.results[0].salary", is(2000.0)))
+                .andExpect(jsonPath("$.results[1].name", is("John 2")))
+                .andExpect(jsonPath("$.results[1].salary", is(4000.0)));
+    }
+
 
 
 }

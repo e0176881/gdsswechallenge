@@ -18,26 +18,26 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("com.orson.swechallenge.repository")
 public class SwechallengeApplication {
 
-	@Autowired
-	private UserDetailRepository userDetailRepository;
+    @Autowired
+    private UserDetailRepository userDetailRepository;
 
-	public static void main(String[] args) {
-		SpringApplication.run(SwechallengeApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SwechallengeApplication.class, args);
+    }
 
-	@Bean
-	InitializingBean seedDatabase() {
-		return () -> {
-			UserDetail userDetail = new UserDetail();
-			userDetail.setName("John");
-			userDetail.setSalary(2000.0f);
-			userDetailRepository.save(userDetail);
+    @Bean
+    InitializingBean seedDatabase() {
+        return () -> {
+            UserDetail userDetail = new UserDetail();
+            userDetail.setName("John");
+            userDetail.setSalary(2000.0f);
+            userDetailRepository.save(userDetail);
 
-			userDetail = new UserDetail();
-			userDetail.setName("John 2");
-			userDetail.setSalary(4000.0f);
-			userDetailRepository.save(userDetail);
-		};
-	}
+            userDetail = new UserDetail();
+            userDetail.setName("John 2");
+            userDetail.setSalary(4000.0f);
+            userDetailRepository.save(userDetail);
+        };
+    }
 
 }
