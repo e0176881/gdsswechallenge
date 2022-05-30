@@ -41,8 +41,6 @@ public class UserDetailController {
         limit = ConstraintsCheck.nullToDefault(limit, CommonConfig.DEFAULT_MYSQL_MAX_LIMIT);
         sort = ConstraintsCheck.nullToDefault(sort, CommonConfig.DEFAULT_SORT);
 
-        System.out.println("xx " + min + max + offset + limit + sort);
-
         if (!ConstraintsCheck.checkIfValidSort(sort)) {
             ErrorResponse err = new ErrorResponse();
             err.setError("Invalid Sort Type");

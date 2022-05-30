@@ -66,7 +66,7 @@ public class UserDetailControllerTest {
 
         when(userDetailService.getUserDetails("1000", "4000", "0", "2147483647", "")).thenReturn(userDetailList);
         ResponseEntity<UserDetailResponse> userDetailResponse = (ResponseEntity<UserDetailResponse>) userDetailController.getAllUserDetails("1000", "4000", "0", "2147483647", "");
-        System.out.println(userDetailResponse.getBody());
+//        System.out.println(userDetailResponse.getBody());
         assertEquals(HttpStatus.OK, userDetailResponse.getStatusCode());
         assertThat(userDetailResponse.getBody().getResults())
                 .isNotNull()
